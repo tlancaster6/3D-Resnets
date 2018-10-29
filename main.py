@@ -23,8 +23,9 @@ from train import train_epoch
 from validation import val_epoch
 import test
 
-pdb.set_trace()
+
 if __name__ == '__main__':
+    pdb.set_trace()
     opt = parse_opts()
     if opt.root_path != '':
         opt.video_path = os.path.join(opt.root_path, opt.video_path)
