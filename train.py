@@ -27,6 +27,7 @@ def train_epoch(epoch, data_loader, model, criterion, optimizer, opt,
             targets = targets.cuda(async=True)
         inputs = Variable(inputs)
         targets = Variable(targets)
+        pdb.set_trace()
         outputs = model(inputs)
         loss = criterion(outputs, targets)
         acc = calculate_accuracy(outputs, targets)
