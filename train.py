@@ -3,6 +3,7 @@ from torch.autograd import Variable
 import time
 import os
 import sys
+import pdb
 
 from utils import AverageMeter, calculate_accuracy
 
@@ -24,6 +25,7 @@ def train_epoch(epoch, data_loader, model, criterion, optimizer, opt,
 
         if not opt.no_cuda:
             targets = targets.cuda(async=True)
+        pdb.set_trace()
         inputs = Variable(inputs)
         targets = Variable(targets)
         outputs = model(inputs)
