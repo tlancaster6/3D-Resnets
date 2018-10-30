@@ -62,7 +62,6 @@ def train_epoch(epoch, data_loader, model, criterion, optimizer, opt,
                   data_time=data_time,
                   loss=losses,
                   acc=accuracies))
-    pdb.set_trace()
     epoch_logger.log({
         'epoch': epoch,
         'loss': losses.avg,
