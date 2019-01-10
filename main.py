@@ -60,7 +60,6 @@ if __name__ == '__main__':
         norm_method = Normalize(opt.mean, [1, 1, 1])
     else:
         norm_method = Normalize(opt.mean, opt.std)
-    pdb.set_trace()
     if not opt.no_train:
         assert opt.train_crop in ['random', 'corner', 'center']
         if opt.train_crop == 'random':
