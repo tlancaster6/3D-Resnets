@@ -4,6 +4,7 @@ import numbers
 import collections
 import numpy as np
 import torch
+import pdb
 from PIL import Image, ImageOps
 try:
     import accimage
@@ -285,10 +286,14 @@ class MultiScaleCornerCrop(object):
                  interpolation=Image.BILINEAR,
                  crop_positions=['c', 'tl', 'tr', 'bl', 'br']):
         self.scales = scales
+        
         self.size = size
         self.interpolation = interpolation
+        self.count = 0
 
         self.crop_positions = crop_positions
+        print(self.scales)
+        print(self.crop_positions)
 
     def __call__(self, img):
         min_length = min(img.size[0], img.size[1])
@@ -331,6 +336,13 @@ class MultiScaleCornerCrop(object):
         return img.resize((self.size, self.size), self.interpolation)
 
     def randomize_parameters(self):
+        #pdb.set_trace()
+        #print(self.scale)
+        self.count += 1
+        print(self.count)
+        self.scales = [1.0, 0.84089641525, 0.7071067811803005, 0.5946035574934808, 0.4999999999911653]
+        print(self.scales)
+        print(self.crop_positions)
         self.scale = self.scales[random.randint(0, len(self.scales) - 1)]
         self.crop_position = self.crop_positions[random.randint(
             0,
