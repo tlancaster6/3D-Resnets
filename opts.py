@@ -27,7 +27,7 @@ def parse_opts():
         '--dataset',
         default='kinetics',
         type=str,
-        help='Used dataset (activitynet | kinetics | ucf101 | hmdb51)')
+        help='Used dataset (activitynet | kinetics | ucf101 | hmdb51 | cichlids)')
     parser.add_argument(
         '--n_classes',
         default=400,
@@ -90,7 +90,7 @@ def parse_opts():
         default='activitynet',
         type=str,
         help=
-        'dataset for mean values of mean subtraction (activitynet | kinetics)')
+        'dataset for mean values of mean subtraction (activitynet | kinetics |cichlids)')
     parser.add_argument(
         '--no_mean_norm',
         action='store_true',
