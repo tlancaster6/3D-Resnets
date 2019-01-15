@@ -111,7 +111,7 @@ if __name__ == '__main__':
             CenterCrop(opt.sample_size),
             ToTensor(opt.norm_value), norm_method
         ])
-        temporal_transform = LoopPadding(opt.sample_duration)
+        #temporal_transform = LoopPadding(opt.sample_duration)
         target_transform = ClassLabel()
         validation_data = get_validation_set(
             opt, spatial_transform, temporal_transform, target_transform)
