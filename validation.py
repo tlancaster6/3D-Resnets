@@ -2,7 +2,7 @@ import torch
 from torch.autograd import Variable
 import time
 import sys
-
+import pdb
 from utils import AverageMeter, calculate_accuracy
 
 
@@ -17,6 +17,7 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     accuracies = AverageMeter()
 
     end_time = time.time()
+    pdb.set_trace()
     for i, (inputs, targets) in enumerate(data_loader):
         data_time.update(time.time() - end_time)
 
