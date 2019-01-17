@@ -1,7 +1,7 @@
 #plot the log
 import matplotlib.pyplot as plt
 import pdb
-train_log_file = '/Users/lijiang/Downloads/train 3.log'
+train_log_file = '/Users/lijiang/Downloads/train 2.log'
 test_log_file = '/Users/lijiang/Downloads/val 1.log'
 train_accuracies = []
 test_accuracies = []
@@ -22,5 +22,6 @@ plt.plot(range(len(train_accuracies)),train_accuracies)
 plt.plot(range(len(test_accuracies)),test_accuracies)
 plt.xlabel('epochs')
 plt.ylabel('accuracy')
+plt.ylim(0.5,1)
 plt.legend(['train','test'])
 fig.savefig('train_test_log.svg', transparent=True)

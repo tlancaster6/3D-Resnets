@@ -1,8 +1,8 @@
 #make cichlids train and test list
 import os
 import numpy as np
-spit_folder = '/Users/lijiang/Desktop/new_split_with_focus/video/spit'
-scoop_folder = '/Users/lijiang/Desktop/new_split_with_focus/video/scoop'
+spit_folder = '/Users/lijiang/Desktop/MC9_1_day_8/jpeg/spit'
+scoop_folder = '/Users/lijiang/Desktop/MC9_1_day_8/jpeg/scoop'
 train_list_file = '/Users/lijiang/Desktop/cichlids_train_list.txt'
 test_list_file = '/Users/lijiang/Desktop/cichlids_test_list.txt'
 
@@ -33,4 +33,4 @@ def create_csv_file(split_ratio):
                 output_string += '\n'
                 test_output.write(output_string)
 
-create_csv_file(0.9)
+create_csv_file(0.01)
