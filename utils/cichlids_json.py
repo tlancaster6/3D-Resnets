@@ -12,7 +12,7 @@ def convert_csv_to_dict(csv_path, subset):
         row = data.ix[i, :]
         slash_rows = data.ix[i, 0].split('/')
         class_name = slash_rows[0]
-        basename = slash_rows[1][:-4]
+        basename = slash_rows[1]
         
         keys.append(basename)
         key_labels.append(class_name)
