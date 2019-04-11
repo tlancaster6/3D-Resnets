@@ -2,13 +2,15 @@ import torch
 from torch.autograd import Variable
 import time
 import sys
+import numpy as np
+import pandas as pd
 import pdb
 from utils import AverageMeter, calculate_accuracy
 
 
 def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     print('validation at epoch {}'.format(epoch))
-
+    
     model.eval()
 
     batch_time = AverageMeter()
@@ -17,6 +19,14 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     accuracies = AverageMeter()
 
     end_time = time.time()
+    
+    #########  temp line, needs to be removed##################################
+    file  = 'epoch_'+ str(epoch)+'_validation_matrix.csv'
+    confusion_matrix = np.zeros((opt.n_classes,opt.n_classes))
+    
+    ###########################################################################
+    
+    
     for i, (inputs, targets) in enumerate(data_loader):
         data_time.update(time.time() - end_time)
 
@@ -29,7 +39,13 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
             outputs = model(inputs)
             loss = criterion(outputs, targets)
             acc = calculate_accuracy(outputs, targets)
-
+             #########  temp line, needs to be removed##################################
+            rows = [int(x) for x in targets]
+            columns = [int(x) for x in np.argmax(outputs,1)]
+            assert len(rows) == len(columns)
+            for i in range(len(rows)):
+                confusion_matrix[rows[i]][columns[i]] +=1
+            ###########################################################################
             losses.update(loss.data[0], inputs.size(0))
             accuracies.update(acc, inputs.size(0))
 
@@ -48,7 +64,11 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
                       data_time=data_time,
                       loss=losses,
                       acc=accuracies))
-
+    #########  temp line, needs to be removed##################################
+    print(confusion_matrix)
+    confusion_matrix = pd.DataFrame(confusion_matrix)
+    confusion_matrix.to_csv(file)
+    
     logger.log({'epoch': epoch, 'loss': losses.avg, 'acc': accuracies.avg})
 
     return losses.avg

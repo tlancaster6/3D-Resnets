@@ -87,7 +87,10 @@ def make_dataset(root_path, annotation_path, subset, n_samples_for_each_video,
     idx_to_class = {}
     for name, label in class_to_idx.items():
         idx_to_class[label] = name
-
+    print('class to idx')
+    print(class_to_idx)
+    print('idx_to_class')
+    print(idx_to_class)
     dataset = []
     for i in range(len(video_names)):
         if i % 1000 == 0:
