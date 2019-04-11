@@ -23,6 +23,7 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
         if not opt.no_cuda:
             targets = targets.cuda(async=True)
         with torch.no_grad():
+            pdb.set_trace()
             inputs = Variable(inputs)
             targets = Variable(targets)
             outputs = model(inputs)
