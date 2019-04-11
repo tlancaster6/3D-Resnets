@@ -4,7 +4,7 @@ from skimage import io, img_as_float
 import numpy as np
 import os
 
-images_directory = '/Users/lijiang/Desktop/data/videos/jpeg_without_vf'
+images_directory = '/Users/lijiang/Desktop/MC6_5/jpeg'
 categories  = os.listdir(images_directory)
 count = 0
 pixels = np.zeros(0)
@@ -20,7 +20,8 @@ for category in categories:
             else:
                 files = os.listdir(images_directory+'/'+category+'/'+folder)
                 for file in files:
-                    if not file.startswith('image'):
+                    #print(file)
+                    if not file.endswith('.jpg'):
                         continue
                     else:
                         file_path = '/'.join([images_directory,category,folder,file])
@@ -33,6 +34,18 @@ for category in categories:
                             pixels = np.concatenate((pixels,image),axis=0)
                         
                         count += 1
+                        if count %10000 == 0:
+                            r_mean = np.mean(pixels[:,:,0])
+                            g_mean = np.mean(pixels[:,:,1])
+                            b_mean = np.mean(pixels[:,:,2])
+                            r_std = np.std(pixels[:,:,0])
+                            g_std = np.std(pixels[:,:,1])
+                            b_std = np.std(pixels[:,:,2])
+                            rgb_mean = [r_mean,g_mean,b_mean]
+                            rgb_std = [r_std,g_std,b_std]
+                            print(rgb_mean)
+                            print(rgb_std)
+                            pixels = image
                         #print(file_path)
 
 r_mean = np.mean(pixels[:,:,0])

@@ -12,10 +12,9 @@ def get_mean(norm_value=255, dataset='activitynet'):
             96.29023126 / norm_value
         ]
     elif dataset == 'cichlids':
-        # Kinetics (10 videos for each class)
         return [
-            76.20589554918055 / norm_value, 80.90237506210525 / norm_value,
-            76.79881159479473 / norm_value
+            90 / norm_value, 96 / norm_value,
+            88 / norm_value
         ]
 
 
@@ -23,8 +22,8 @@ def get_mean(norm_value=255, dataset='activitynet'):
 def get_std(norm_value=255, dataset='activitynet'):
     if dataset == 'cichlids':
         return [
-            43.02384117950772 / norm_value, 45.245146004359434 / norm_value,
-            44.903208894140846 / norm_value
+            35 / norm_value, 37 / norm_value,
+            38 / norm_value
         ]
     # Kinetics (10 videos for each class)
     else:
