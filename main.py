@@ -122,6 +122,7 @@ if __name__ == '__main__':
             shuffle=False,
             num_workers=opt.n_threads,
             pin_memory=True)
+        pdb.set_trace()
         val_logger = Logger(
             os.path.join(opt.result_path, 'val.log'), ['epoch', 'loss', 'acc'])
 
