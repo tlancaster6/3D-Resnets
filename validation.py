@@ -66,7 +66,7 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     #########  temp line, needs to be removed##################################
     print(confusion_matrix)
     confusion_matrix = pd.DataFrame(confusion_matrix)
-    confusion_matrix.to_csv(file)
+    #confusion_matrix.to_csv(file)
     
     logger.log({'epoch': epoch, 'loss': losses.avg, 'acc': accuracies.avg})
 
