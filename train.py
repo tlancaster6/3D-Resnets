@@ -11,7 +11,7 @@ from utils import AverageMeter, calculate_accuracy
 def train_epoch(epoch, data_loader, model, criterion, optimizer, opt,
                 epoch_logger, batch_logger):
     print('train at epoch {}'.format(epoch))
-    #pdb.set_trace()
+    pdb.set_trace()
     model.train()
 
     batch_time = AverageMeter()

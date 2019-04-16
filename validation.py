@@ -42,8 +42,8 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
             rows = [int(x) for x in targets]
             columns = [int(x) for x in np.argmax(outputs,1)]
             assert len(rows) == len(columns)
-            for i in range(len(rows)):
-                confusion_matrix[rows[i]][columns[i]] +=1
+            for idx in range(len(rows)):
+                confusion_matrix[rows[idx]][columns[idx]] +=1
             ###########################################################################
             losses.update(loss.data[0], inputs.size(0))
             accuracies.update(acc, inputs.size(0))
