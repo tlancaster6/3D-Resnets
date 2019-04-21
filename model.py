@@ -171,7 +171,7 @@ def generate_model(opt):
             assert opt.arch == pretrain['arch']
 
             model.load_state_dict(pretrain['state_dict'])
-
+'''
             if opt.model == 'densenet':
                 model.module.classifier = nn.Linear(
                     model.module.classifier.in_features, opt.n_finetune_classes)
@@ -180,7 +180,7 @@ def generate_model(opt):
                 model.module.fc = nn.Linear(model.module.fc.in_features,
                                             opt.n_finetune_classes)
                 model.module.fc = model.module.fc.cuda()
-
+'''
             parameters = get_fine_tuning_parameters(model, opt.ft_begin_index)
             return model, parameters
     else:
