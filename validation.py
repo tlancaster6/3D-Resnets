@@ -40,7 +40,9 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
             acc = calculate_accuracy(outputs, targets)
             #########  temp line, needs to be removed##################################
             rows = [int(x) for x in targets]
+            print(rows)
             columns = [int(x) for x in np.argmax(outputs,1)]
+            print(columns)
             assert len(rows) == len(columns)
             for idx in range(len(rows)):
                 confusion_matrix[rows[idx]][columns[idx]] +=1
