@@ -33,17 +33,15 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
         if not opt.no_cuda:
             targets = targets.cuda(async=True)
         with torch.no_grad():
+            pdb.set_trace()
             inputs = Variable(inputs)
             targets = Variable(targets)
             outputs = model(inputs)
             loss = criterion(outputs, targets)
             acc = calculate_accuracy(outputs, targets)
             #########  temp line, needs to be removed##################################
-            print(outputs)
             rows = [int(x) for x in targets]
-            print(rows)
             columns = [int(x) for x in np.argmax(outputs,1)]
-            print(columns)
             assert len(rows) == len(columns)
             for idx in range(len(rows)):
                 confusion_matrix[rows[idx]][columns[idx]] +=1
