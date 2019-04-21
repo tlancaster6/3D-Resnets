@@ -6,7 +6,7 @@ import pandas as pd
 train_list_file = '/Users/lijiang/Desktop/cichlids_train_list.txt'
 test_list_file = '/Users/lijiang/Desktop/cichlids_test_list.txt'
 dictionary_file = '/Users/lijiang/Desktop/classInd.txt'
-jpg_folder = '/Users/lijiang/Desktop/zach_MC6_5_jpgs'
+jpg_folder = '/Users/lijiang/Desktop/MC6_5_HMM'
 
 def create_csv_file(split_ratio):
     with open(train_list_file,'w') as train_output, open(test_list_file,'w') as test_output:

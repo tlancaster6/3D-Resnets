@@ -38,7 +38,7 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
             outputs = model(inputs)
             loss = criterion(outputs, targets)
             acc = calculate_accuracy(outputs, targets)
-             #########  temp line, needs to be removed##################################
+            #########  temp line, needs to be removed##################################
             rows = [int(x) for x in targets]
             columns = [int(x) for x in np.argmax(outputs,1)]
             assert len(rows) == len(columns)
@@ -66,7 +66,7 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     #########  temp line, needs to be removed##################################
     print(confusion_matrix)
     confusion_matrix = pd.DataFrame(confusion_matrix)
-    #confusion_matrix.to_csv(file)
+    confusion_matrix.to_csv(file)
     
     logger.log({'epoch': epoch, 'loss': losses.avg, 'acc': accuracies.avg})
 

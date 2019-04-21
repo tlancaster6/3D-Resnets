@@ -5,7 +5,7 @@ from subprocess import call
 
 #transfer videos to a single folder for downstream processing
 fish_folder = '/Users/lijiang/Dropbox (GaTech)/McGrath/Apps/CichlidPiData/MC6_5/VideoAnalysis'
-target_folder = '/Users/lijiang/Desktop/Zach_new_annotations_videos'
+target_folder = '/Users/lijiang/Desktop/Zach_new_annotations_HMM_videos'
 for folder in os.listdir(fish_folder):
     folder_path = fish_folder+'/'+folder
     if not os.path.isdir(folder_path):
@@ -28,7 +28,7 @@ for folder in os.listdir(fish_folder):
         video_file = clips_folder + '/'
         temp = [row['LID'],row['N'],row['X'],row['Y']]
         video_file += '_'.join([str(x) for x in temp])
-        video_file += '.mp4'
+        video_file += '_HMM.mp4'
         command = ['cp',video_file,des_folder+'/']
         call(command)
         print(' '.join(command))
