@@ -40,7 +40,7 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
             loss = criterion(outputs, targets)
             acc = calculate_accuracy(outputs, targets)
             #########  temp line, needs to be removed##################################
-            for i in len(targets):
+            for i in range(len(targets)):
                 confidence_for_each_validation[paths[i]] = [x.item() for x in outputs[i]]
             rows = [int(x) for x in targets]
             columns = [int(x) for x in np.argmax(outputs,1)]
