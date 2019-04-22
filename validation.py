@@ -26,7 +26,7 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     confidence_for_each_validation = {}
     ###########################################################################
     
-    pdb.set_trace()
+    #pdb.set_trace()
     for i, (inputs, targets, paths) in enumerate(data_loader):
         data_time.update(time.time() - end_time)
 
