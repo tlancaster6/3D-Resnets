@@ -26,14 +26,14 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     
     ###########################################################################
     
-    
+    pdb.set_trace()
     for i, (inputs, targets, paths) in enumerate(data_loader):
         data_time.update(time.time() - end_time)
 
         if not opt.no_cuda:
             targets = targets.cuda(async=True)
         with torch.no_grad():
-            pdb.set_trace()
+            
             inputs = Variable(inputs)
             targets = Variable(targets)
             outputs = model(inputs)
