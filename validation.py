@@ -23,7 +23,7 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     #########  temp line, needs to be removed##################################
     file  = 'epoch_'+ str(epoch)+'_validation_matrix.csv'
     confusion_matrix = np.zeros((opt.n_classes,opt.n_classes))
-    
+    confidence_for_each_validation = {}
     ###########################################################################
     
     pdb.set_trace()
@@ -40,6 +40,8 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
             loss = criterion(outputs, targets)
             acc = calculate_accuracy(outputs, targets)
             #########  temp line, needs to be removed##################################
+            for i in len(targets):
+                confidence_for_each_validation[paths[i]] = [x.item() for x in outputs[i]]
             rows = [int(x) for x in targets]
             columns = [int(x) for x in np.argmax(outputs,1)]
             assert len(rows) == len(columns)
@@ -68,6 +70,11 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     print(confusion_matrix)
     confusion_matrix = pd.DataFrame(confusion_matrix)
     confusion_matrix.to_csv(file)
+    confidence_matrix = pd.DataFrame.from_dict(confidence_for_each_validation, orient='index')
+    confidence_matrix.to_csv('confidence_matrix.csv')
+    
+    #########  temp line, needs to be removed##################################
+    
     
     logger.log({'epoch': epoch, 'loss': losses.avg, 'acc': accuracies.avg})
 
