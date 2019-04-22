@@ -89,6 +89,7 @@ def make_dataset(root_path, annotation_path, subset, n_samples_for_each_video,
         idx_to_class[label] = name
     dataset = []
     for i in range(len(video_names)):
+        #print(video_names[i])
         if i % 1000 == 0:
             print('dataset loading [{}/{}]'.format(i, len(video_names)))
 
@@ -191,7 +192,7 @@ class cichlids(data.Dataset):
         if self.target_transform is not None:
             target = self.target_transform(target)
 
-        return clip, target
+        return clip, target, path
 
     def __len__(self):
         return len(self.data)
