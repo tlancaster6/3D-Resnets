@@ -42,11 +42,13 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
             #########  temp line, needs to be removed##################################
             for i in range(len(targets)):
                 confidence_for_each_validation[paths[i]] = [x.item() for x in outputs[i]]
+            '''
             rows = [int(x) for x in targets]
             columns = [int(x) for x in np.argmax(outputs,1)]
             assert len(rows) == len(columns)
             for idx in range(len(rows)):
                 confusion_matrix[rows[idx]][columns[idx]] +=1
+            '''
             ###########################################################################
             losses.update(loss.data[0], inputs.size(0))
             accuracies.update(acc, inputs.size(0))
@@ -67,9 +69,9 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
                       loss=losses,
                       acc=accuracies))
     #########  temp line, needs to be removed##################################
-    print(confusion_matrix)
-    confusion_matrix = pd.DataFrame(confusion_matrix)
-    confusion_matrix.to_csv(file)
+    #print(confusion_matrix)
+    #confusion_matrix = pd.DataFrame(confusion_matrix)
+    #confusion_matrix.to_csv(file)
     confidence_matrix = pd.DataFrame.from_dict(confidence_for_each_validation, orient='index')
     confidence_matrix.to_csv('confidence_matrix.csv')
     

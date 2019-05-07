@@ -5,7 +5,11 @@ import json
 import pandas as pd
 
 def convert_csv_to_dict(csv_path, subset):
-    data = pd.read_csv(csv_path, delimiter=' ', header=None)
+    try:
+        data = pd.read_csv(csv_path, delimiter=' ', header=None)
+    except:
+        print('no data, check data')
+        return {}
     keys = []
     key_labels = []
     for i in range(data.shape[0]):
