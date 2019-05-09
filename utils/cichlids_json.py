@@ -3,12 +3,13 @@ import os
 import sys
 import json
 import pandas as pd
+import pdb
 
 def convert_csv_to_dict(csv_path, subset):
     try:
         data = pd.read_csv(csv_path, delimiter=' ', header=None)
     except:
-        print('no data, check data')
+        print('Warning: no {}, check data'.format(csv_path))
         return {}
     keys = []
     key_labels = []
@@ -45,7 +46,9 @@ def convert_cichlids_csv_to_activitynet_json(label_csv_path, train_csv_path,
     val_database = convert_csv_to_dict(val_csv_path, 'validation')
     
     dst_data = {}
+    
     dst_data['labels'] = labels
+    
     dst_data['database'] = {}
     dst_data['database'].update(train_database)
     dst_data['database'].update(val_database)
@@ -55,6 +58,7 @@ def convert_cichlids_csv_to_activitynet_json(label_csv_path, train_csv_path,
 
 if __name__ == '__main__':
     csv_dir_path = sys.argv[1]
+    #label_csv_path = sys.argv[2]
 
     label_csv_path = os.path.join(csv_dir_path, 'classInd.txt')
     train_csv_path = os.path.join(csv_dir_path, 'cichlids_train_list.txt')
