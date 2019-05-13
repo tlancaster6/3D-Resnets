@@ -28,13 +28,14 @@ for category in categories:
                         image = io.imread(file_path)
                         if count == 0:
                             
-                            pixels = image
+                            images = [image]
                         else:
                             #this part is bad, has to be updated
-                            pixels = np.concatenate((pixels,image),axis=0)
-                        
+                            images.append(image)
+                            
                         count += 1
-                        if count %10000 == 0:
+                        if count %1000 == 0:
+                            pixels = np.concatenate(images,axis=0)
                             r_mean = np.mean(pixels[:,:,0])
                             g_mean = np.mean(pixels[:,:,1])
                             b_mean = np.mean(pixels[:,:,2])
