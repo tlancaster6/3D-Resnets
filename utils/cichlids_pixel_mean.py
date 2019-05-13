@@ -4,7 +4,7 @@ from skimage import io, img_as_float
 import numpy as np
 import os
 
-images_directory = '/Users/lijiang/Desktop/MC6_5/jpeg'
+images_directory = '/data/home/llong35/0004_vid/jpgs'
 categories  = os.listdir(images_directory)
 count = 0
 pixels = np.zeros(0)
