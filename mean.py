@@ -12,31 +12,33 @@ def get_mean(norm_value=255, dataset='activitynet'):
             96.29023126 / norm_value
         ]
         #This mean is for MC6_5 and the next is for CV10_3
-#     elif dataset == 'cichlids':
-#         return [
-#             90 / norm_value, 96 / norm_value,
-#             88 / norm_value
-    
     elif dataset == 'cichlids':
         return [
-            65.61218605139486 / norm_value, 81.2619239251075 / norm_value,
-            21.748924667533245 / norm_value
-        ]
+            90 / norm_value, 96 / norm_value,
+            88 / norm_value
+            ]
+            
+#     
+#     elif dataset == 'cichlids':
+#         return [
+#             65.61218605139486 / norm_value, 81.2619239251075 / norm_value,
+#             21.748924667533245 / norm_value
+#         ]
 
 
 
 def get_std(norm_value=255, dataset='activitynet'):
     #This mean is for MC6_5 and the next is for CV10_3
-#     if dataset == 'cichlids':
-#         return [
-#             35 / norm_value, 37 / norm_value,
-#             38 / norm_value
-#         ]
     if dataset == 'cichlids':
         return [
-            31.456187524920107 / norm_value, 31.98858896375627 / norm_value,
-            22.22160022831104 / norm_value
+            35 / norm_value, 37 / norm_value,
+            38 / norm_value
         ]
+#     if dataset == 'cichlids':
+#         return [
+#             31.456187524920107 / norm_value, 31.98858896375627 / norm_value,
+#             22.22160022831104 / norm_value
+#         ]
 
 
     # Kinetics (10 videos for each class)
