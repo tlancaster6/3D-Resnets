@@ -7,6 +7,7 @@ from torch import nn
 from torch import optim
 from torch.optim import lr_scheduler
 import pdb
+import pandas as pd
 
 from opts import parse_opts
 from model import generate_model
