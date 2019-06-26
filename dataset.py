@@ -5,8 +5,8 @@ from datasets.hmdb51 import HMDB51
 from datasets.cichlids import cichlids
 
 
-def get_training_set(opt, spatial_transform, temporal_transform,
-                     target_transform):
+def get_training_set(opt, spatial_transforms, temporal_transform,
+                     target_transform, annotationDict):
     assert opt.dataset in ['kinetics', 'activitynet', 'ucf101', 'hmdb51','cichlids']
 
     if opt.dataset == 'kinetics':
@@ -47,9 +47,9 @@ def get_training_set(opt, spatial_transform, temporal_transform,
             opt.video_path,
             opt.annotation_path,
             'training',
-            spatial_transform=spatial_transform,
+            spatial_transforms=spatial_transforms,
             temporal_transform=temporal_transform,
-            target_transform=target_transform)
+            target_transform=target_transform, annotationDict = annotationDict)
             
     return training_data
 
