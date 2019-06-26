@@ -1,4 +1,4 @@
-import torch
+import torch, sys
 import torch.utils.data as data
 from PIL import Image
 import os
@@ -179,8 +179,9 @@ class cichlids(data.Dataset):
         Returns:
             tuple: (image, target) where target is class_index of the target class.
         """
+        print('path = ' + path, file = sys.stderr)
+        print(index, file = sys.stderr)
         path = self.data[index]['video']
-        print('path = ' + path)
 
         frame_indices = self.data[index]['frame_indices']
         if self.temporal_transform is not None:
