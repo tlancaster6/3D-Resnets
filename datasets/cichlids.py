@@ -179,10 +179,10 @@ class cichlids(data.Dataset):
         Returns:
             tuple: (image, target) where target is class_index of the target class.
         """
-        print('path = ' + path, file = sys.stderr)
+        
         print(index, file = sys.stderr)
         path = self.data[index]['video']
-
+        print('path = ' + path, file = sys.stderr)
         frame_indices = self.data[index]['frame_indices']
         if self.temporal_transform is not None:
             frame_indices = self.temporal_transform(frame_indices)
