@@ -159,7 +159,7 @@ class cichlids(data.Dataset):
                  spatial_transforms=None,
                  temporal_transform=None,
                  target_transform=None,
-                 annotationDict = None
+                 annotationDict = None,
                  sample_duration=16,
                  get_loader=get_default_video_loader):
         self.data, self.class_names = make_dataset(
