@@ -54,8 +54,8 @@ def get_training_set(opt, spatial_transforms, temporal_transform,
     return training_data
 
 
-def get_validation_set(opt, spatial_transform, temporal_transform,
-                       target_transform):
+def get_validation_set(opt, spatial_transforms, temporal_transform,
+                       target_transform, annotationDict):
     assert opt.dataset in ['kinetics', 'activitynet', 'ucf101', 'hmdb51','cichlids']
 
     if opt.dataset == 'kinetics':
@@ -105,10 +105,10 @@ def get_validation_set(opt, spatial_transform, temporal_transform,
             opt.annotation_path,
             'validation',
             opt.n_val_samples,
-            spatial_transform,
+            spatial_transforms,
             temporal_transform,
             target_transform,
-            sample_duration=opt.sample_duration)
+            sample_duration=opt.sample_duration,annotationDict = annotationDict)
     return validation_data
 
 

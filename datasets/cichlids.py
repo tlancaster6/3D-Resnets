@@ -180,9 +180,7 @@ class cichlids(data.Dataset):
             tuple: (image, target) where target is class_index of the target class.
         """
         
-        print(index)
         path = self.data[index]['video']
-        print('path = ' + path)
         clip_name = path.rstrip().split('/')[-1]
         frame_indices = self.data[index]['frame_indices']
         if self.temporal_transform is not None:
