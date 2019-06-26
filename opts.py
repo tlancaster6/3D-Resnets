@@ -14,6 +14,11 @@ def parse_opts():
         type=str,
         help='Directory path of Videos')
     parser.add_argument(
+        '--info_file',
+        default='',
+        type=str,
+        help='Directory path of Videos')
+    parser.add_argument(
         '--annotation_path',
         default='kinetics.json',
         type=str,

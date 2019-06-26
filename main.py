@@ -69,16 +69,31 @@ if __name__ == '__main__':
         elif opt.train_crop == 'center':
             crop_method = MultiScaleCornerCrop(
                 opt.scales, opt.sample_size, crop_positions=['c'])
-        spatial_transform = Compose([
-            crop_method,
-            RandomHorizontalFlip(),
-            ToTensor(opt.norm_value), norm_method
-        ])
-        
+        spatial_transforms = [crop_method,RandomHorizontalFlip(),ToTensor(opt.norm_value)]
+        #spatial_transform = Compose([
+        #    crop_method,
+        #    RandomHorizontalFlip(),
+        #    ToTensor(opt.norm_value), norm_method
+        #])
+        norm_methods = {}
+        with open(opts.mean_file) as f:
+            for i,line in enumerate(f):
+                if i==0:
+                    continue
+                tokens = line.rstrip().split(',')
+                norm_method = Normalize([float(x) for x in tokens[1:4]], [float(x) for x in tokens[4:7]]) 
+                norm_methods[tokens[0] = Compose([crop_method, RandomHorizontalFlip(), ToTensor(opt.normal_value), norm_method]
+
+        annotateData = pd.read_csv(opts.annotation_file, sep = ',', header = 0)
+        keys = annotateData[annotateData.Dataset=='Train']['Location']
+        values = annotateData[annotateData.Dataset=='Train']['meanID']
+
+        annotationDictionary = dict(zip(keys, values))
+
         temporal_transform = TemporalRandomCrop(opt.sample_duration)
         target_transform = ClassLabel()
-        training_data = get_training_set(opt, spatial_transform,
-                                         temporal_transform, target_transform)
+        training_data = get_training_set(opt, spatial_transforms,
+                                         temporal_transform, target_transform, annotationDictionary)
         train_loader = torch.utils.data.DataLoader(
             training_data,
             batch_size=opt.batch_size,
