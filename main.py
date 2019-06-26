@@ -76,7 +76,7 @@ if __name__ == '__main__':
         #    ToTensor(opt.norm_value), norm_method
         #])
         spatial_transforms = {}
-        with open(opts.mean_file) as f:
+        with open(opt.mean_file) as f:
             for i,line in enumerate(f):
                 if i==0:
                     continue
@@ -84,7 +84,7 @@ if __name__ == '__main__':
                 norm_method = Normalize([float(x) for x in tokens[1:4]], [float(x) for x in tokens[4:7]]) 
                 spatial_transforms[tokens[0]] = Compose([crop_method, RandomHorizontalFlip(), ToTensor(opt.normal_value), norm_method])
 
-        annotateData = pd.read_csv(opts.annotation_file, sep = ',', header = 0)
+        annotateData = pd.read_csv(opt.annotation_file, sep = ',', header = 0)
         keys = annotateData[annotateData.Dataset=='Train']['Location']
         values = annotateData[annotateData.Dataset=='Train']['meanID']
 
