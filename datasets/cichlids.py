@@ -180,16 +180,17 @@ class cichlids(data.Dataset):
             tuple: (image, target) where target is class_index of the target class.
         """
         
-        print(index, file = sys.stderr)
+        print(index)
         path = self.data[index]['video']
-        print('path = ' + path, file = sys.stderr)
+        print('path = ' + path)
+        clip_name = path.rstrip().split('/')[-1]
         frame_indices = self.data[index]['frame_indices']
         if self.temporal_transform is not None:
             frame_indices = self.temporal_transform(frame_indices)
         clip = self.loader(path, frame_indices)
         if self.spatial_transforms is not None:
-            self.spatial_transforms[self.annotationDict[path]].randomize_parameters()
-            clip = [self.spatial_transforms[self.annotationDict[path]](img) for img in clip]
+            self.spatial_transforms[self.annotationDict[clip_name].randomize_parameters()
+            clip = [self.spatial_transforms[self.annotationDict[clip_name]](img) for img in clip]
         clip = torch.stack(clip, 0).permute(1, 0, 2, 3)
 
         target = self.data[index]
