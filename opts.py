@@ -24,6 +24,11 @@ def parse_opts():
         type=str,
         help='Mean file that gives info on what means and stdevs are ')
     parser.add_argument(
+        '--temporal_crop',
+        default='random',
+        type=str,
+        help='(random | center)')
+    parser.add_argument(
         '--annotation_path',
         default='kinetics.json',
         type=str,

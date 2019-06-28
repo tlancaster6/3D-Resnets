@@ -15,7 +15,7 @@ from mean import get_mean, get_std
 from spatial_transforms import (
     Compose, Normalize, Scale, CenterCrop, CornerCrop, MultiScaleCornerCrop,
     MultiScaleRandomCrop, RandomHorizontalFlip, ToTensor)
-from temporal_transforms import LoopPadding, TemporalRandomCrop
+from temporal_transforms import LoopPadding, TemporalRandomCrop, TemporalCenterCrop
 from target_transforms import ClassLabel, VideoID
 from target_transforms import Compose as TargetCompose
 from dataset import get_training_set, get_validation_set, get_test_set
@@ -92,7 +92,10 @@ if __name__ == '__main__':
 
         annotationDictionary = dict(zip(keys, values))
 
-        temporal_transform = TemporalRandomCrop(opt.sample_duration)
+        if opt.temporal_crop == 'Random':
+            temporal_transform = TemporalRandomCrop(opt.sample_duration)
+        else:
+            temporal_transform = TemporalCenterCrop(opt.sample_duration)
         target_transform = ClassLabel()
         training_data = get_training_set(opt, spatial_transforms,
                                          temporal_transform, target_transform, annotationDictionary)
