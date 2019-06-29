@@ -71,9 +71,9 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
     #########  temp line, needs to be removed##################################
     print(confusion_matrix)
     confusion_matrix = pd.DataFrame(confusion_matrix)
-    confusion_matrix.to_csv(file)
+    confusion_matrix.to_csv(opt.root_path + 'ConfusionMatrix.csv')
     confidence_matrix = pd.DataFrame.from_dict(confidence_for_each_validation, orient='index')
-    confidence_matrix.to_csv('confidence_matrix.csv')
+    confidence_matrix.to_csv(opt.root_path + 'ConfidenceMatrix.csv')
     
     #########  temp line, needs to be removed##################################
     
