@@ -131,14 +131,17 @@ class TemporalCenterRandomCrop(object):
         Returns:
             list: Cropped frame indices.
         """
-        begin_index = random.randint(0, int(len(frame_indices)/2))
+        spacing = int((len(frame_indices) - self.size)/2) # i.e. if 120 and 90: = 30 
+        offset = random.randint(-1*int(spacing/2) + 1, int(spacing/2) - 1) # i.e if 120 and 90, -14 to 14
+        begin_index = int(len(frame_indices)/2) - int(self.size/2) + offset # i.e. 120: 60 - 45 + offset (-1 to 29)
         end_index = begin_index + self.size
 
         out = frame_indices[begin_index:end_index]
-
+        print(frame_inices)
+        print(out)
         for index in out:
             if len(out) >= self.size:
                 break
             out.append(index)
-
+        print(out)
         return out
