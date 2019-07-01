@@ -268,7 +268,7 @@ class RandomHorizontalFlip(object):
     def randomize_parameters(self):
         self.p = random.random()
 
-MultiScaleRandomCenterCrop(object):
+class MultiScaleRandomCenterCrop(object):
     def __init__(self, size):
         self.size = size
 

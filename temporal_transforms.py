@@ -111,7 +111,7 @@ class TemporalRandomCrop(object):
 
         return out
 
-class TemporalCenterCrop(object):
+class TemporalCenterRandomCrop(object):
     """Temporally crop the given frame indices at a random location.
 
     If the number of frames is less than the size,
