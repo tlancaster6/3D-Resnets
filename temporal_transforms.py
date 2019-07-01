@@ -137,7 +137,7 @@ class TemporalCenterRandomCrop(object):
         end_index = begin_index + self.size
 
         out = frame_indices[begin_index:end_index]
-        print(frame_inices)
+        print(frame_indices)
         print(out)
         for index in out:
             if len(out) >= self.size:
