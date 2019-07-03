@@ -147,8 +147,6 @@ if __name__ == '__main__':
         temporal_transform = TemporalCenterCrop(opt.sample_duration)
         #temporal_transform = LoopPadding(opt.sample_duration)
         target_transform = ClassLabel()
-        print(annotationDictionary)
-        pdb.set_trace()
         validation_data = get_validation_set(
             opt, spatial_transforms, temporal_transform, target_transform, annotationDictionary)
         val_loader = torch.utils.data.DataLoader(
