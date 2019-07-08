@@ -26,7 +26,7 @@ def train_epoch(epoch, data_loader, model, criterion, optimizer, opt,
         out_str = []
         for clip_data in range(inputs.shape[0]):
             for color in range(inputs.shape[1]):
-                out_str += inputs[clip_data][color].mean()
+                out_str.append(inputs[clip_data][color].mean())
 
         inputs = Variable(inputs)
         targets = Variable(targets)
