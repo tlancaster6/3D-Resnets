@@ -113,7 +113,7 @@ if __name__ == '__main__':
             ['epoch', 'loss', 'acc', 'lr'])
         train_batch_logger = Logger(
             os.path.join(opt.result_path, 'train_batch.log'),
-            ['epoch', 'batch', 'iter', 'loss', 'acc', 'lr'])
+            ['epoch', 'batch', 'iter', 'loss', 'acc', 'lr', 'means'])
 
         if opt.nesterov:
             dampening = 0
