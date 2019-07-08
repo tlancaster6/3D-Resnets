@@ -21,9 +21,13 @@ def train_epoch(epoch, data_loader, model, criterion, optimizer, opt,
     end_time = time.time()
     for i, (inputs, targets, paths) in enumerate(data_loader):
         data_time.update(time.time() - end_time)
-        pdb.set_trace()
         if not opt.no_cuda:
             targets = targets.cuda(async=True)
+        out_str = []
+        for clip_data in inputs.shape[0]:
+            for color in inputs.shape[1]:
+                out_str += inputs[clip_data][color].mean()
+
         inputs = Variable(inputs)
         targets = Variable(targets)
         outputs = model(inputs)
@@ -47,6 +51,7 @@ def train_epoch(epoch, data_loader, model, criterion, optimizer, opt,
             'loss': losses.val,
             'acc': accuracies.val,
             'lr': optimizer.param_groups[0]['lr']
+            'means': ','.join([str(x) for x in out_str])
         })
 
         print('Epoch: [{0}][{1}/{2}]\t'
