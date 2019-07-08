@@ -24,8 +24,8 @@ def train_epoch(epoch, data_loader, model, criterion, optimizer, opt,
         if not opt.no_cuda:
             targets = targets.cuda(async=True)
         out_str = []
-        for clip_data in inputs.shape[0]:
-            for color in inputs.shape[1]:
+        for clip_data in range(inputs.shape[0]):
+            for color in range(inputs.shape[1]):
                 out_str += inputs[clip_data][color].mean()
 
         inputs = Variable(inputs)
