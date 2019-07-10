@@ -275,13 +275,19 @@ class MultiScaleRandomCenterCrop(object):
     def __call__(self, img):
         w, h = img.size
         th, tw = self.size, self.size
-        x1 = int(round((w - tw) / 2.)) + self.offset_x
-        y1 = int(round((h - th) / 2.)) + self.offset_y
-        return img.crop((x1, y1, x1 + tw, y1 + th))
+        assert w > tw and h > th
+        random.seed(self.seed_x)
+        offset_x = randon.randint(0:w-tw-1)
+        random.seed(self.seed_y)
+        offset_y = randon.randint(0:h-th-1)
+        
+        return img.crop((offset_x, offset_y, offset_x + tw, offset_y + th))
 
     def randomize_parameters(self):
-        self.offset_x = random.randint(-1*int(self.size/4), int(self.size/4))
-        self.offset_y = random.randint(-1*int(self.size/4), int(self.size/4))
+        self.seed_x = random.randint(0,1000)
+        self.seed_y = random.randint(0,1000)
+#        self.offset_x = random.randint(-1*int(self.size/4), int(self.size/4))
+#        self.offset_y = random.randint(-1*int(self.size/4), int(self.size/4))
 
 class MultiScaleCornerCrop(object):
     """Crop the given PIL.Image to randomly selected size.
