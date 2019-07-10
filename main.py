@@ -140,7 +140,7 @@ if __name__ == '__main__':
 
         annotateData = pd.read_csv(opt.annotation_file, sep = ',', header = 0)
         keys = annotateData[annotateData.Dataset=='Test']['Location']
-        values = annotateData[annotateData.Dataset=='Test']['meanID']
+        values = annotateData[annotateData.Dataset=='Test']['MeanID']
 
         annotationDictionary = dict(zip(keys, values))
         
