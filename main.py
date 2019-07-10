@@ -144,7 +144,6 @@ if __name__ == '__main__':
 
         annotationDictionary = dict(zip(keys, values))
         
-        pdb.set_trace()
 
         temporal_transform = TemporalCenterCrop(opt.sample_duration)
         #temporal_transform = LoopPadding(opt.sample_duration)
