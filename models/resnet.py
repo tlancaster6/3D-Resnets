@@ -135,7 +135,7 @@ class ResNet(nn.Module):
             block, 256, layers[2], shortcut_type, stride=2)
         self.layer4 = self._make_layer(
             block, 512, layers[3], shortcut_type, stride=2)
-        last_duration = int(math.ceil(sample_duration / (16*t_stride))
+        last_duration = int(math.ceil(sample_duration / (16*t_stride)))
         last_size = int(math.ceil(sample_size / 32))
         self.avgpool = nn.AvgPool3d(
             (last_duration, last_size, last_size), stride=1)
