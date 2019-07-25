@@ -85,12 +85,13 @@ if __name__ == '__main__':
                     continue
                 tokens = line.rstrip().split(',')
                 print([float(x) for x in tokens[1:4]], [float(x) for x in tokens[4:7]])
+                #norm_method = Normalize([1.0,1.0,1.0],[1.0,1.0,1.0]) 
                 norm_method = Normalize([float(x) for x in tokens[1:4]], [float(x) for x in tokens[4:7]]) 
                 spatial_transforms[tokens[0]] = Compose([crop_method, RandomHorizontalFlip(), ToTensor(opt.norm_value), norm_method])
 
         annotateData = pd.read_csv(opt.annotation_file, sep = ',', header = 0)
         keys = annotateData[annotateData.Dataset=='Train']['Location']
-        values = annotateData[annotateData.Dataset=='Train']['meanID']
+        values = annotateData[annotateData.Dataset=='Train']['MeanID']
 
         annotationDictionary = dict(zip(keys, values))
 
@@ -140,10 +141,11 @@ if __name__ == '__main__':
 
         annotateData = pd.read_csv(opt.annotation_file, sep = ',', header = 0)
         keys = annotateData[annotateData.Dataset=='Test']['Location']
-        values = annotateData[annotateData.Dataset=='Test']['meanID']
+        values = annotateData[annotateData.Dataset=='Test']['MeanID']
 
         annotationDictionary = dict(zip(keys, values))
         
+
         temporal_transform = TemporalCenterCrop(opt.sample_duration)
         #temporal_transform = LoopPadding(opt.sample_duration)
         target_transform = ClassLabel()
