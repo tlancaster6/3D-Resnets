@@ -23,6 +23,11 @@ def parse_opts():
         default='',
         type=str,
         help='Mean file that gives info on what means and stdevs are ')
+    parser.add_argument(
+        '--t_stride',
+        default=1,
+        type=int,
+        help='Stride for first convolution. Larger stride decreases memory and accuracy')
     """parser.add_argument(
         '--temporal_crop',
         default='random',

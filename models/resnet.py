@@ -112,7 +112,8 @@ class ResNet(nn.Module):
                  block,
                  layers,
                  sample_size,
-                 sample_duration,
+                 sample_duration, 
+                 t_stride=1,
                  shortcut_type='B',
                  num_classes=400):
         self.inplanes = 64
@@ -121,7 +122,7 @@ class ResNet(nn.Module):
             3,
             64,
             kernel_size=7,
-            stride=(1, 2, 2),
+            stride=(t_stride, 2, 2),
             padding=(3, 3, 3),
             bias=False)
         self.bn1 = nn.BatchNorm3d(64)
