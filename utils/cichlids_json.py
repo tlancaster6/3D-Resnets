@@ -61,9 +61,9 @@ if __name__ == '__main__':
     label_csv_path = sys.argv[2]
 
     #label_csv_path = os.path.join(csv_dir_path, 'classInd.txt')
-    train_csv_path = os.path.join(csv_dir_path, 'cichlids_train_list.txt')
-    val_csv_path = os.path.join(csv_dir_path, 'cichlids_test_list.txt')
-    dst_json_path = os.path.join(csv_dir_path, 'cichlids.json')
+    train_csv_path = sys.argv[1]
+    val_csv_path = sys.argv[2]
+    dst_json_path = os.path.join(sys.argv[3], 'cichlids.json')
 
     convert_cichlids_csv_to_activitynet_json(label_csv_path, train_csv_path,
                                                val_csv_path, dst_json_path)
