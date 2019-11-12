@@ -3,7 +3,7 @@ import os
 import sys
 import json
 import pandas as pd
-import pdb
+import pdb, argparse
 
 def convert_csv_to_dict(csv_path, subset):
     try:
@@ -56,14 +56,18 @@ def convert_cichlids_csv_to_activitynet_json(label_csv_path, train_csv_path,
     with open(dst_json_path, 'w') as dst_file:
         json.dump(dst_data, dst_file)
 
-if __name__ == '__main__':
-    csv_dir_path = sys.argv[1]
-    label_csv_path = sys.argv[2]
 
-    #label_csv_path = os.path.join(csv_dir_path, 'classInd.txt')
-    train_csv_path = sys.argv[1]
-    val_csv_path = sys.argv[2]
-    dst_json_path = os.path.join(sys.argv[3], 'cichlids.json')
+parser = argparse.ArgumentParser()
+parser.add_argument('classFile', type = str, help = 'File containing the possible labels')
+parser.add_argument('trainFile', type = str, help = 'File containing the train videos')
+parser.add_argument('testFile', type = str, help = 'File containing the test videos')
+parser.add_argument('outFile', type = str, help = 'Location of output file')
 
-    convert_cichlids_csv_to_activitynet_json(label_csv_path, train_csv_path,
+label_csv_path = args.classFile
+train_csv_path = args.trainFile
+val_csv_path = args.testFile
+
+dst_json_path = args.outFile
+
+convert_cichlids_csv_to_activitynet_json(label_csv_path, train_csv_path,
                                                val_csv_path, dst_json_path)
