@@ -63,6 +63,8 @@ parser.add_argument('trainFile', type = str, help = 'File containing the train v
 parser.add_argument('testFile', type = str, help = 'File containing the test videos')
 parser.add_argument('outFile', type = str, help = 'Location of output file')
 
+args = parser.parse_args()
+
 label_csv_path = args.classFile
 train_csv_path = args.trainFile
 val_csv_path = args.testFile
