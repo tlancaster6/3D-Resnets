@@ -21,7 +21,7 @@ def convert_csv_to_dict(csv_path, subset):
         
         keys.append(basename)
         key_labels.append(class_name)
-        
+    pdb.set_trace()    
     database = {}
     for i in range(len(keys)):
         key = keys[i]
@@ -41,10 +41,8 @@ def load_labels(label_csv_path):
 
 def convert_cichlids_csv_to_activitynet_json(label_csv_path, train_csv_path, 
                                            val_csv_path, dst_json_path):
-    
-    pdb.set_trace()
     labels = load_labels(label_csv_path)
-    train_database = convert_csv_to_dict(train_csv_path, 'training')
+    #train_database = convert_csv_to_dict(train_csv_path, 'training')
     val_database = convert_csv_to_dict(val_csv_path, 'validation')
     
     dst_data = {}
