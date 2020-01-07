@@ -29,7 +29,8 @@ if __name__ == '__main__':
     
     opt = parse_opts()
     if opt.root_path != '':
-        opt.video_path = os.path.join(opt.root_path, opt.video_path)
+        if opt.video_path == '':
+            opt.video_path = os.path.join(opt.root_path, opt.video_path)
         opt.annotation_path = os.path.join(opt.root_path, opt.annotation_path)
         opt.result_path = os.path.join(opt.root_path, opt.result_path)
         if opt.resume_path:
