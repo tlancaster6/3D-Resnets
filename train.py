@@ -22,7 +22,7 @@ def train_epoch(epoch, data_loader, model, criterion, optimizer, opt,
     for i, (inputs, targets, paths) in enumerate(data_loader):
         data_time.update(time.time() - end_time)
         if not opt.no_cuda:
-            targets = targets.cuda(async=True)
+            targets = targets.cuda(non_blocking=True)
         out_str = []
         for clip_data in range(inputs.shape[0]):
             for color in range(inputs.shape[1]):
