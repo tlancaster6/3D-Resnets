@@ -44,13 +44,13 @@ def val_epoch(epoch, data_loader, model, criterion, opt, logger):
                 confidence_for_each_validation[paths[j]] = [x.item() for x in outputs[j]]
             
             rows = [int(x) for x in targets]
-            columns = [int(x) for x in np.argmax(outputs,1)]
+            columns = [int(x) for x in torch.argmax(outputs, 1)]
             assert len(rows) == len(columns)
             for idx in range(len(rows)):
-                confusion_matrix[rows[idx]][columns[idx]] +=1
+                confusion_matrix[rows[idx]][columns[idx]] += 1
             
             ###########################################################################
-            losses.update(loss.data[0], inputs.size(0))
+            losses.update(loss.data, inputs.size(0))
             accuracies.update(acc, inputs.size(0))
 
             batch_time.update(time.time() - end_time)
